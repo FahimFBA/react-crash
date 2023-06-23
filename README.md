@@ -1,6 +1,6 @@
 # MovieFinder
 
-Website to find movies and tv shows. Created with React JS by following from [JavaScript Mastery](https://youtu.be/b9eMGE7QtTk).
+Website to find movies, games and tv shows. Created with React JS by following from [JavaScript Mastery](https://youtu.be/b9eMGE7QtTk).
 
 :star: Extra feature: Enter button functionality for searching movies and tv shows.
 
