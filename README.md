@@ -9,7 +9,7 @@ The website is deployed on [Netlify](https://react-crash-js-mastery.netlify.app/
 
 ## 🔥 Demo
 
-![Demo](Demo.png)
+![Demo](https://raw.githubusercontent.com/FahimFBA/react-crash/main/Demo.png)
 
 ## 🔖 Available Scripts
 
