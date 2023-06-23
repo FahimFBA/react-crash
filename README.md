@@ -4,7 +4,7 @@ Website to find movies and tv shows. Created with React JS by following from [Ja
 
 :star: Extra feature: Enter button functionality for searching movies and tv shows.
 
-The website is deployed on [Netlify](https://react-crash-js-mastery.netlify.app/).
+The website is deployed on [Netlify](https://react-crash-js-mastery.netlify.app/). You can also check the [video demo from YouTube](https://youtu.be/8S8tFoEDz_w).
 
 
 ## 🔥 Demo
