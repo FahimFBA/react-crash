@@ -3,7 +3,7 @@ import MovieCard from "./MovieCard";
 import SearchIcon from "./search.svg";
 import "./App.css";
 
-const API_URL = "secrets.API_KEY";
+const API_URL = "https://www.omdbapi.com/?apikey=40cab645";
 
 const App = () => {
   const [searchTerm, setSearchTerm] = useState("");
