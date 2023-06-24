@@ -3,7 +3,7 @@ name: Bug Report
 about: Report a bug to help us improve
 name: Bug report
 about: Create a report to help us improve
-title: ''
+title: '[BUG] Add a relevant title'
 labels: ''
 assignees: ''
 ---
