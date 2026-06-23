@@ -1,0 +1,86 @@
+name: Release from changelog
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - CHANGELOG.md
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    name: Publish GitHub release
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v5
+
+      - name: Publish latest changelog entry
+        uses: actions/github-script@v8
+        with:
+          script: |
+            const fs = require("fs");
+
+            const changelog = fs.readFileSync("CHANGELOG.md", "utf8");
+            const heading = /^## \[?v?([0-9]+\.[0-9]+\.[0-9]+(?:[-+][^\]\s]+)?)\]?.*$/m.exec(changelog);
+
+            if (!heading) {
+              core.setFailed("No versioned changelog section found. Expected a heading like '## [1.2.3] - YYYY-MM-DD'.");
+              return;
+            }
+
+            const version = heading[1];
+            const tag = `v${version}`;
+            const bodyStart = heading.index + heading[0].length;
+            const nextHeading = changelog.slice(bodyStart).search(/\n## /);
+            const body = changelog
+              .slice(bodyStart, nextHeading === -1 ? undefined : bodyStart + nextHeading)
+              .trim();
+
+            try {
+              await github.rest.git.getRef({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                ref: `tags/${tag}`,
+              });
+            } catch (error) {
+              if (error.status !== 404) throw error;
+
+              await github.rest.git.createRef({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                ref: `refs/tags/${tag}`,
+                sha: context.sha,
+              });
+            }
+
+            try {
+              const existingRelease = await github.rest.repos.getReleaseByTag({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                tag,
+              });
+
+              await github.rest.repos.updateRelease({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                release_id: existingRelease.data.id,
+                name: tag,
+                body,
+              });
+            } catch (error) {
+              if (error.status !== 404) throw error;
+
+              await github.rest.repos.createRelease({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                tag_name: tag,
+                name: tag,
+                body,
+              });
+            }
