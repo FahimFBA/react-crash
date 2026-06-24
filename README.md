@@ -6,6 +6,24 @@ Website to find movies, games and tv shows. Created with React JS by following f
 
 The website is deployed on [Netlify](https://react-crash-js-mastery.netlify.app/). You can also check the [video demo from YouTube](https://youtu.be/8S8tFoEDz_w).
 
+## API Setup
+
+MovieFinder uses [TMDB](https://developer.themoviedb.org/) for movie, TV, and people search.
+
+Create a `.env.local` file and add one of these values:
+
+```bash
+VITE_TMDB_ACCESS_TOKEN=your_tmdb_read_access_token
+```
+
+or:
+
+```bash
+VITE_TMDB_API_KEY=your_tmdb_api_key
+```
+
+On Netlify, add the same variable in **Site configuration > Environment variables**.
+
 
 ## 🔥 Demo
 
@@ -30,5 +48,5 @@ See the section about [running tests](https://facebook.github.io/create-react-ap
 
 ### `npm run build`
 
-Builds the app for production to the `build` folder.\
+Builds the app for production to the `dist` folder.\
 It correctly bundles React in production mode and optimizes the build for the best performance.

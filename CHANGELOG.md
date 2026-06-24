@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.1.2] - 2026-06-24
+
+### Changed
+
+- Replaced the old OMDb search integration with TMDB multi-search for movies, TV shows, and people.
+- Added result filters and richer cards with ratings, summaries, and TMDB poster/profile images.
+- Documented the required TMDB environment variables for local development and Netlify.
+
 ## [0.1.1] - 2026-06-23
 
 ### Security
